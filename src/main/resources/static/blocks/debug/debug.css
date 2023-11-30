@@ -1,0 +1,13 @@
+﻿.debug {
+  position: absolute;
+  top: 80px;
+  left: 50px;
+  color: black;
+  background-color: white;
+}
+
+#debug_toggle {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
