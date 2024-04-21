@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+  <title>Экран настроек телеграм бота</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../pages/settings.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <script>
+    function clearInput(inputId) {
+      document.getElementById(inputId).value = "";
+    }
+    $(document).ready(function() {
+    $('#fileInput').on('change', function() {
+      var fileName = $(this).val().split('\\').pop(); // получаем имя файла без пути
+      $('#fileName').text("Выбран: "+fileName);
+    });
+    $('#fileInput2').on('change', function() {
+      var fileName = $(this).val().split('\\').pop(); // получаем имя файла без пути
+      $('#fileName2').text("Выбран: "+fileName);
+    });
+  });
+  </script>
+</head>
+<body>
+
+  <!-- Разделение на стороны -->
+  <div class="container-fluid split-container">
+    <!-- Левая сторона (для мобильного) -->
+    <div class="col-md-6 left-side">
+      <img src="../images/sets.jpg" class="header-img" alt="Экран настроек телеграм бота">
+    </div>
+
+    <!-- Правая сторона -->
+    <div class="col-md-6 right-side">
+      <!-- Форма с текстовыми полями -->
+      <form action="/admin/settings" method="POST" enctype="multipart/form-data">
+      <div class="container">
+        <a href="/admin/select" class="btn btn-dark backmenu" style="margin-left: -4vw;margin-bottom: 25px;">Назад</a>
+        <h2 class="header-text text-left mb-4">Настроить бота под себя</h2>
+        <h5 class="header-text">Здесь можно настроить подарки и контакты, которые будут показываться клиентам</h5>
+        <div class="form-group mt-4">
+          <label for="launchBot">Ссылка в телеграмме на менеджера</label>
+          <input type="text" class="form-control text-dark input-place" id="launchBot" name="manager" placeholder="Введите текст">
+          <span class="clear-icon" onclick="clearInput('launchBot')">
+            <img src="../icons/clear-icon.svg">
+          </span>
+          <input type="text" class="form-control disabled-input mt-2" placeholder="" th:if="${managerLink}" th:placeholder="${managerLink}" disabled>
+          <p class="help-text">Контакт менеджера, который уже сохранен</p>
+        </div>
+
+        <div class="form-group mt-4">
+          <label for="gift1">Название подарка №1</label>
+          <input type="text" class="form-control input-place" id="gift1" name="gift1" placeholder="Введите подарок №1">
+          <span class="clear-icon" onclick="clearInput('gift1')">
+            <img src="../icons/clear-icon.svg">
+          </span>
+          <input type="text" class="form-control disabled-input mt-2" placeholder="" th:if="${gift1}" th:placeholder="${gift1}" disabled>
+          <p class="help-text">Какой подарок подарим после первого отгаданного слова</p>
+          <label class="custom-file-upload btn btn-block btn-outline-dark">
+            <input type="file" style="display:none" name="file1" id="fileInput" accept="image/*,image/jpeg"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 3C4.79086 3 3 4.79086 3 7V17C3 19.2091 4.79086 21 7 21H17C19.2091 21 21 19.2091 21 17V7C21 4.79086 19.2091 3 17 3H7ZM12 8.5C12.5523 8.5 13 8.94772 13 9.5V11H14.5C15.0523 11 15.5 11.4477 15.5 12C15.5 12.5523 15.0523 13 14.5 13H13V14.5C13 15.0523 12.5523 15.5 12 15.5C11.4477 15.5 11 15.0523 11 14.5V13H9.5C8.94772 13 8.5 12.5523 8.5 12C8.5 11.4477 8.94772 11 9.5 11H11V9.5C11 8.94772 11.4477 8.5 12 8.5Z" fill="#171717"/>
+            </svg>
+            <span id="fileName">Прикрепить изображение</span>
+          </label>
+        </div>
+
+        <div class="form-group mt-4">
+          <label for="gift2">Название подарка №2</label>
+          <div>
+            <input type="text" class="form-control" name="gift2" id="gift2" placeholder="Введите подарок №2">
+            <span class="clear-icon" onclick="clearInput('gift2')">
+            <img src="../icons/clear-icon.svg">
+          </span>
+          </div>
+          <input type="text" class="form-control disabled-input mt-2" placeholder="" th:if="${gift2}" th:placeholder="${gift2}" disabled>
+          <p class="help-text">Какой подарок подарим после пятого отгаданного слова</p>
+          <label class="custom-file-upload btn btn-block btn-outline-dark">
+            <input type="file" style="display:none" name="file2" id="fileInput2" accept="image/*,image/jpeg"/>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 3C4.79086 3 3 4.79086 3 7V17C3 19.2091 4.79086 21 7 21H17C19.2091 21 21 19.2091 21 17V7C21 4.79086 19.2091 3 17 3H7ZM12 8.5C12.5523 8.5 13 8.94772 13 9.5V11H14.5C15.0523 11 15.5 11.4477 15.5 12C15.5 12.5523 15.0523 13 14.5 13H13V14.5C13 15.0523 12.5523 15.5 12 15.5C11.4477 15.5 11 15.0523 11 14.5V13H9.5C8.94772 13 8.5 12.5523 8.5 12C8.5 11.4477 8.94772 11 9.5 11H11V9.5C11 8.94772 11.4477 8.5 12 8.5Z" fill="#171717"/>
+            </svg>
+            <span id="fileName2">Прикрепить изображение</span>
+          </label>
+        </div>
+        </div>
+        <div class="alert alert-success" role="alert" th:text="${success}" th:if="${success}" style="margin-bottom:5px"></div>
+        <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}" style="margin-bottom:5px"></div>
+        <button type="submit" class="btn btn-dark btn-block save-btn">Сохранить изменения</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

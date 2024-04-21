@@ -1,0 +1,138 @@
+@font-face {
+      font-family: Manrope;
+      src: url("../fonts/Manrope.ttf");
+    }
+    @font-face {
+      font-family: Manrope-Bold;
+      src: url("../fonts/Manrope-Bold.ttf");
+      }
+    @font-face {
+      font-family: Manrope-ExtraBold;
+      src: url("../fonts/Manrope-ExtraBold.ttf");
+    }
+    @font-face {
+      font-family: Manrope-SemiBold;
+      src: url("../fonts/Manrope-SemiBold.ttf");
+    }
+    body {
+      background-color: #ffffff;
+      color: #495057;
+      font-family: Manrope-SemiBold;
+    }
+    .header-img {
+      width: 100vh;
+      max-width: 50vw;
+      height: 150vh; /* Указываем высоту 100% от видимой части экрана */
+      object-fit: cover; /* Заполняем всю высоту, обрезая лишнее */
+      margin-left: -50px;
+    }
+    .container {
+      padding: 20px;
+    }
+    .input-place {
+      position: relative;
+    }
+    .clear-icon:hover{
+        cursor: pointer;
+     }
+     .clear-icon {
+        position: absolute;
+        right: 50px;
+        transform: translateY(-127%);
+        cursor: pointer;
+     }
+    .form-control {
+      border: 1px solid #ced4da;
+    }
+     {
+      background-color: #DDDEDF;
+      color: #CBCDD1;
+    }
+    .save-btn {
+      margin-top: 20px;
+    }
+    .help-text {
+      margin-top: 5px;
+      color: #6c757d;
+    }
+    @media (min-width: 768px) {
+
+      .header-text{
+        margin-left: -50px;
+        margin-bottom: 50px;
+        color: var(--Black, #171717);
+      }
+      h2.header-text {
+        /* Title/Extrabold • 24 */
+        font-family: Manrope-ExtraBold;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: 28px; /* 116.667% */
+        letter-spacing: 0.3px;
+      }
+      h5.header-text {
+        color: var(--Black, #171717);
+        /* Body/Semibold • 15 */
+        font-family: Manrope-SemiBold;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px; /* 160% */
+        letter-spacing: 0.25px;
+      }
+      .split-container {
+        display: flex;
+      }
+      .left-side {
+        flex: 1;
+        order: 1;
+        margin-right: 20px;
+      }
+      .right-side {
+        flex: 2;
+        order: 2;
+      }
+      .disabled-input {
+        background-color: #DDDEDF;
+        color: #FFFFFF;
+      }
+      .form-control:focus {
+          border-color: #ffddff;
+      }
+
+    }
+    @media (max-width: 767px) {
+    .header-img {
+        width: 135%;
+        max-width: 100vw;
+        height: 40vh;
+        width: calc(100% + 60px);
+        margin-left: -10px;
+        position: relative;
+    }
+    .header-text {
+        position: absolute;
+        margin-top: -50%;
+        left: 55%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 30px;
+        text-align: left;
+        width: 100%;
+  }
+  h5.header-text {
+        position: absolute;
+        margin-top: -25%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 20px;
+        text-align: left;
+        width: 100%;
+  }
+
+  .split-container {
+    margin-left: -20px;
+    margin-right: 0px;
+  }
+}

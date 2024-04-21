@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Выбор действий</title>
+    <link rel="stylesheet" href="../pages/select.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="image-container">
+        <img src="../images/wman.jpg" alt="Man Box" class="image" weight="30%" height="30%">
+    </div>
+    <div class="content-container">
+        <h1 class="header-text">Что будем делать дальше?</h1>
+        <div class="rectangles">
+            <div class="rectangle" id="rectangle1" onclick="toggleRectangle(1)">
+                <img class="rect-img" src="../images/settings-small.jpg">
+                <h2 class="rect-header-text">Перейти в настройки</h2>
+                <h4 class="rect-desc-text">Изменить подарки и контакт менеджера</h4>
+                <img class="select" src="../images/Ellipse.svg">
+                <img class="select-choice" src="../images/Ellipse-black.svg" hidden>
+                <img class="select-voice" src="../images/Vector.svg" hidden>
+            </div>
+            <div class="rectangle" id="rectangle2" onclick="toggleRectangle(2)">
+                <img class="rect-img" src="../images/sender-small.jpg">
+                <h2 class="rect-header-text">Сделать рассылку</h2>
+                <h4 class="rect-desc-text">Написать сообщение всем клиентам</h4>
+                <img class="select" src="../images/Ellipse.svg">
+                <img class="select-choice" src="../images/Ellipse-black.svg" hidden>
+                <img class="select-voice" src="../images/Vector.svg" hidden>
+            </div>
+        </div>
+        <form id="redirectForm" action="#">
+            <button class="button" onclick="prepareRedirect()">Продолжить</button>
+        </form>
+    </div>
+</div>
+<script>
+    let rectNum = 0
+    function toggleRectangle(rectangleNumber) {
+       rectNum = rectangleNumber
+      const selectedRectangle = document.getElementById(`rectangle${rectangleNumber}`);
+      // Сбросить стили для всех прямоугольников
+      document.querySelectorAll('.rectangle').forEach(rectangle => {
+        rectangle.style.borderRadius = '15px';
+        rectangle.style.border = '1px solid #E5E5E5';
+        rectangle.querySelector('.select-choice').hidden = true;
+        rectangle.querySelector('.select-voice').hidden = true;
+      });
+      // Применить стили для выбранного прямоугольника
+      selectedRectangle.style.borderRadius = '15px';
+      selectedRectangle.style.border = '2px solid #000';
+      selectedRectangle.querySelector('.select-choice').hidden = false;
+      selectedRectangle.querySelector('.select-voice').hidden = false;
+    }
+    function prepareRedirect(){
+    console.log("PREPARE")
+    form = document.getElementById("redirectForm")
+    console.log(rectNum)
+    if (rectNum == 1){
+        form.action = "/admin/settings"
+    }
+    if (rectNum == 2)
+    {
+        form.action = "/admin/sender"
+    }
+    else return;
+    form.submit()
+    }
+</script>
+</body>
+</html>

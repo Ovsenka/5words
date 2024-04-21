@@ -1,26 +1,19 @@
+const wordsFilename = "words.txt"
+
 // инициализация словаря
 async function getWords(){
-  //!!! используется в помогаторе!!!
-  // хз что и почему тут происходит но вроде работает
-  const nouns = await fetch('russian_nouns_5.txt');
+  const nouns = await fetch(wordsFilename);
   const text = await nouns.text();
-  // а так  работает в консоли но не тут...
-  // const nouns = fetch('russian_nouns_5.txt');
-  // setTimeout(() => { console.log("slept"); }, 2500);
-  // nouns.then(response => response.text())
-  //   .then((response) => {
-  //     allWords = response.split('\r\n')
-  //   })
-  //   .catch(err => console.log(err))
   if (document.location.host.toLowerCase().includes('github'))
-    allWords = text.split('\n') // для гх пагес
+    allWords = text.split('\n')
   else
-    allWords = text.split('\r\n')  // для локальной
+    allWords = text.split('\r\n')
   allWords = text.split('\n')
 }
 
 // начинает все заново
 function newGame(first = false){
+  //if (V('winCount') >= 3) { resetStats() }
   highlightCurLine(0)
   curLine = 0
   highlightCurLine(1)
@@ -42,6 +35,7 @@ function newGame(first = false){
     btn.classList.remove('letter_type_right')
   })
   secret = allWords[Math.floor(Math.random() * allWords.length)].replace('ё','е')
+  secret = secret.toLowerCase()
   console.log('загадано слово "' + secret.toUpperCase() + '"')
   if(!first)
     V('gamesPlayed', 1+ +V('gamesPlayed'))
@@ -59,12 +53,10 @@ function colorField(){
     } else {
       if (curLetter != secret[index]) {  // есть но не на своем месте
         letterField.classList.add('letter_type_misposition')
-        // тут надо сохранить желтый если был
         if (!curButton.classList.contains('letter_type_right'))
           curButton.classList.add('letter_type_misposition')
       } else {
         letterField.classList.add('letter_type_right')
-        // здесь тоже все однозначно
         curButton.classList.add('letter_type_right')
       }
     }
@@ -97,7 +89,6 @@ function highlightCurLine(isCur){
 // проверяет слово
 function checkWord(word){
 console.log("СЛОВО:"+word)
-console.log("SECRET:"+secret)
   if (word == secret){
     V('totalTries', 1+ +V('totalTries'))
     complete = true;
@@ -105,16 +96,16 @@ console.log("SECRET:"+secret)
     colorField()
     setTimeout(()=>{
       console.log('красим-красим')
-      alert('Угадал')
+      sendResult(parseInt(V('winCount')), 1)
+      WebApp.showAlert('Поздравляем, ты угадал! Загадано слово: '+secret)
       newGame()
     }, 100) // ok
-    // почемуто сначала делается алерт, а красить не красит. Видимо потому что алерт асинхронный?...
   } else {
-    if (!allWords.includes(word)){
-      alert('Нет такого слова')
+    if (!allWords.includes(word.toUpperCase())){
+      WebApp.showAlert('Такого слова нет!')
     } else {
       if (triedWords.includes(word)){
-        alert('Это слово уже было')
+        WebApp.showAlert('Это слово уже было!')
         return
       }
       V('totalTries', 1+ +V('totalTries'))
@@ -125,7 +116,8 @@ console.log("SECRET:"+secret)
       triedWords.push(curWord)
       curWord = ''
       if (curLine > 5){
-        alert('Вы проиграли, было загадано слово "' + secret + '"')
+        sendResult(V('winCount'), 0)
+        WebApp.showAlert('Вы проиграли, было загадано слово "' + secret + '"')
         V('loseCount', 1+ +V('loseCount'))
         newGame()
       }
@@ -170,10 +162,3 @@ function closeInstructions(){
   console.log('close')
 }
 
-
-// лайфхачные слова:
-// пилот ревун камыш (маска?)
-// спорт лиман девка
-// спорт диван шмель -- 15 разных, нет  у к г
-// кулеш
-// спорт чувак гемин

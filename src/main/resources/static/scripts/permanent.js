@@ -1,4 +1,3 @@
-// хз может нужен только массив??
 // let localStorVars = [
 // ]
 function initLocalStorage(){
@@ -12,14 +11,12 @@ function initLocalStorage(){
   // ]
 
   stats.forEach( stat => {
-  // vars.forEach(v=>{
     const v = stat.id
     const tmp = localStorage.getItem(v)
     if (tmp === null) {
       localStorage.setItem(v, 0)
     }
   })
-  // хз здесь ли надо это писать но пока тут
   if (V('totalTries') == "0"){
     resetStats()
   }

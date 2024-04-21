@@ -1,0 +1,44 @@
+    <!DOCTYPE html>
+    <html lang="en"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Рассылка сообщений</title>
+        <link rel="stylesheet" href="../pages/globals.css" />
+        <link rel="stylesheet" href="../pages/styleguide.css" />
+        <link rel="stylesheet" href="../pages/sender.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+    <div class="example">
+        <div class="rectangle-container">
+            <div class="rectangle">
+
+                <img src="../images/send.jpg" class="header-img" alt="Рассылка">
+            </div>
+        </div>
+        <form id="senderForm" action="/admin/sender" method="POST">
+        <div class="sample-container">
+            <div class="misc-title-a "><p class="text">Что хочешь написать всем подписчикам?</p></div>
+            <p class="text-wrapper">Здесь можно отправить сообщение, которое придет всем подписанным клиентам</p>
+            <a href="/admin/select" class="btn btn-dark backmenu btn-block" style="margin-left: 0vw;margin-bottom: 25px;">Назад</a>
+            <div class="alert alert-success" role="alert" th:text="${success}" th:if="${success}"></div>
+            <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+            <div class="text-area">
+                <textarea name="text" id="textArea" rows="12" cols="62%" placeholder="Введите текст сообщения"></textarea>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="btn btn-dark btn-block" id="senderBtn">Отправить всем</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    </body>
+    <script src="../scripts/sender.js"></script>
+    </html>

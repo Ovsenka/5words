@@ -3,32 +3,19 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta name="description" content="5 букв ака Быки и коровы">
   <meta name="keywords" content="быки и коровы 5 букв">
-  <meta name="author" content="Argentum4k">
   <title>5 БУКВ</title>
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="pages/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body class="page">
   <header class="header">
     <nav>
-      <a class="header__link" href="pomogator.html">
-        <span class="header__letter">п</span>
-        <span class="header__letter">о</span>
-        <span class="header__letter">м</span>
-        <span class="header__letter">о</span>
-        <span class="header__letter">г</span>
-        <span class="header__letter">а</span>
-        <span class="header__letter">т</span>
-        <span class="header__letter">о</span>
-        <span class="header__letter">р</span>
-      </a>
-      <a href=""></a>
-      <a href=""></a>
     </nav>
     <h1 class="header__title">
       <span class="header__letter">5</span><span class="header__letter">Б</span><span class="header__letter">У</span><span
@@ -49,7 +36,7 @@
   <button id="debug_toggle" class="debug_hidden" onclick="toggleDebug()">дебаг вкл/выкл</button>
   <main class="content">
     <section class="instructions">
-      <h2>Игра 5 букв, или Быки и коровы.</h2>
+      <h2>Игра 5 букв</h2>
       <br><br>
       <p>В игре нужно угадать слово из 5 букв, это нарицательное существительное в первом лице и единственном числе.
         Подсвечиваются буквы, которые есть в слове,
@@ -68,7 +55,7 @@
         </ul>
       </ol>
       <br><br>
-      <button type="button" onclick="closeInstructions()">Закрыть</button>
+      <button id="startButton" type="button" onclick="closeInstructions()">Закрыть</button>
       <br><br>
     </section>
     <section class="stats">
@@ -182,11 +169,12 @@
     <!--    это для автогенерации файлов по бэм  -->
   </template>
 
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="./scripts/WebApp.js"></script>
   <script src="./scripts/index.js"></script>
   <script src="./scripts/debug.js"></script>
   <script src="./scripts/permanent.js"></script>
   <script src="./scripts/init.js"></script> // типа это норм что переменные используются до объявления... ок
-
 </body>
 
 </html>
