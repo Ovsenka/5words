@@ -3,6 +3,11 @@
 Первая победа в игре - первый приз.  
 Количество побед для выдачи второго приза - опционально
 
+### Телеграм бот и web app
+![Бот](https://i.imgur.com/e0Jyc9C.jpeg)
+
+![Бот2](https://i.imgur.com/TVChEgz.jpeg)
+
 ### Игра
 ![Игра](https://imgur.com/kFM18kR.png)
 
